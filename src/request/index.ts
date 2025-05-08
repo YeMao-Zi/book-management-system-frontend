@@ -46,8 +46,9 @@ axiosInterface.interceptors.response.use(
 const request = async <T>(config: AxiosRequestConfig): Promise<T> => {
   try {
     const result = await axiosInterface(config);
+    const { data } = result;
     console.log(result, "result");
-    return result?.data;
+    return data?.data || data;
   } catch (error) {
     return Promise.reject(error);
   }
